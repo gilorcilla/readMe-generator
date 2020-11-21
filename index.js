@@ -73,7 +73,17 @@ const promptUser = () => {
 };
 
 // function to initialize program
-asyn function init() {}
+async function init() {
+  console.log("Hello There!");
+  try {
+    const answers = await promptUser();
+    const readme = generateMarkDown(answers);
+    await writeFileAsynch("READ.md", readme);
+    console.log("Successfully Wrote README.md!");
+  } catch (err) {
+    console.log(err);
+  }
+}
 
 // function call to initialize program
 init();
