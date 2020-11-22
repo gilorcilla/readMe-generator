@@ -4,22 +4,22 @@ function generateMarkdown(userResponse, userInfo) {
   // Generate Table of Contents, based on userResponses
   let draftToc = `## Table of Contents`;
 
-  if (userResponse.installation !== '') { draftToc += `
+  if (userResponses.installation !== '') { draftToc += `
   * [Installation] (#installation)` };
 
-  if (userResponse.usage !== '') { draftToc += `
+  if (userResponses.usage !== '') { draftToc += `
   * [Usage] (#usage)`};
 
-  if (userResponse.contributing !== '') { draftToc += `
+  if (userResponses.contributing !== '') { draftToc += `
   * [Contributing] (#contributing)`};
 
-  If (userResponse.tests !== '') { draftToc += `
+  If (userResponses.tests !== '') { draftToc += `
   * [Tests] (#tests)`};
 
   // Generate markdown for the upper portion of the README.md file
-  let draftMarkdown = `# ${userResponse.title}
+  let draftMarkdown = `# ${userResponses.title}
   
-  ![Badge for GitHub repo top language](https://img.shields.io/github/languages/top/${userResponses.username}/${userResponse.repo}?style=flat&logo=appveyor) ![Badge for GitHub last commit](https://img.shields.io/github/last-commit/${userResponses.username}/${userResponses.repo}?style=flat&logo=appveyor)
+  ![Badge for GitHub repo top language](https://img.shields.io/github/languages/top/${userResponses.username}/${userResponses.repo}?style=flat&logo=appveyor) ![Badge for GitHub last commit](https://img.shields.io/github/last-commit/${userResponses.username}/${userResponses.repo}?style=flat&logo=appveyor)
   
   Check out the badges hosted by [shields.io](https://shields.io).
   
@@ -83,6 +83,38 @@ function generateMarkdown(userResponse, userInfo) {
   
   ${userResponses.license}`;
 
+  // Questions/About the developer section
+  let draftDev =
+  `
+  ----
   
+  ## Questions?
+  
+  ![Developer Profile Picture](${userInfo.avatar_url})
+  
+  For any questions, please dont hesitate to contact me with my info below:
+  
+  GitHub: [@${userInfo.login}](${userInfo.url})`;
+
+  // if GitHub email is not null, add Developer section
+  if (userInfo.email !== null) {
+
+    draftDev += 
+    `
+    
+    Email: ${userInfo.email}
+    
+    `
+  };
+
+  // Add developer section to markdown
+  draftMarkdown += draftDev;
+
+  // Return markdown
+  return draftMarkdown;
+
+}
+
+
 
 module.exports = generateMarkdown;
