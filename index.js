@@ -99,7 +99,7 @@ const util = require("util");
 
 // Internal Modules
 const api = require("./utils/api.js");
-const generateMarkDown = require(".utils/generateMarkdown.js");
+const generateMarkDown = require("./utils/generateMarkdown.js");
 
 // Inquirer prompts for userResponses
 const questions = [
@@ -150,18 +150,18 @@ const questions = [
     message: "Provide possible use of your project in the usage section.",
     name: "usage",
   },
-  {
-    type: "input",
-    message:
-      "If possible, provide guidelines on how other developers can cantribute to your project.",
-    name: "contributing",
-  },
-  {
-    type: "input",
-    message:
-      "If possible, provide any tests written for your application and provide examples on how to run them.",
-    name: "tests",
-  },
+  // {
+  //   type: "input",
+  //   message:
+  //     "If possible, provide guidelines on how other developers can cantribute to your project.",
+  //   name: "contributing",
+  // },
+  // {
+  //   type: "input",
+  //   message:
+  //     "If possible, provide any tests written for your application and provide examples on how to run them.",
+  //   name: "tests",
+  // },
   {
     type: "input",
     message: "Choose a license for your project.",
@@ -175,3 +175,43 @@ const questions = [
     ],
   },
 ];
+
+function writeToFile(fileName, data) {
+  fs.writeFile(fileName, data, (err) => {
+    if (err) {
+      return console.log(err);
+    }
+
+    console.log("Success!  Your README.md file has been created!");
+  });
+}
+
+const writeFileAsynch = util.promisify(writeToFile);
+
+//Main Function
+async function init() {
+  try {
+    //Prompt Inquirer questions
+    const userResponses = await inquirer.prompt(questions);
+    console.log("Your responses: ", userResponses);
+    console.log(
+      "Thank you for your responses!  Fetching your GitHub data next..."
+    );
+
+    //Call GitHub api for user information
+    const userInfo = await api.getUser(userResponses);
+    console.log("Your GitHub user infor: ", userInfo);
+
+    //Pass Inquirer userResponses and GitHub userInfo to generateMarkdown
+    console.log("Generating your README.md next...");
+    const markdown = generateMarkDown(userResponses, userInfo);
+    console.log(markdown);
+
+    //Write Markdown to file
+    await writeToFileAsync("ExampleREADME.md", markdown);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+init();

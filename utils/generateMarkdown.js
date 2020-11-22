@@ -1,20 +1,28 @@
 // function to generate markdown for README
 function generateMarkdown(userResponse, userInfo) {
-  
   // Generate Table of Contents, based on userResponses
   let draftToc = `## Table of Contents`;
 
-  if (userResponses.installation !== '') { draftToc += `
-  * [Installation] (#installation)` };
+  if (userResponses.installation !== "") {
+    draftToc += `
+  * [Installation] (#installation)`;
+  }
 
-  if (userResponses.usage !== '') { draftToc += `
-  * [Usage] (#usage)`};
+  if (userResponses.usage !== "") {
+    draftToc += `
+  * [Usage] (#usage)`;
+  }
 
-  if (userResponses.contributing !== '') { draftToc += `
-  * [Contributing] (#contributing)`};
+  if (userResponses.contributing !== "") {
+    draftToc += `
+  * [Contributing] (#contributing)`;
+  }
 
-  If (userResponses.tests !== '') { draftToc += `
-  * [Tests] (#tests)`};
+  // If(userResponses.tests !== "");
+  //
+  //   draftToc += `
+  // * [Tests] (#tests)`;
+  // }
 
   // Generate markdown for the upper portion of the README.md file
   let draftMarkdown = `# ${userResponses.title}
@@ -29,7 +37,7 @@ function generateMarkdown(userResponse, userInfo) {
   
   ${userResponses.description}
   
-  `
+  `;
 
   // Add Table of Contents (Toc) to markdown
   draftMarkdown += draftToc;
@@ -38,54 +46,46 @@ function generateMarkdown(userResponse, userInfo) {
   draftMarkdown += ` * [License](#license)`;
 
   // Optional Installation section
-  if (userResponses.installation !== '') {
-
-    draftMarkdown +=
-     `
+  if (userResponses.installation !== "") {
+    draftMarkdown += `
      ## Installation
      
      *Steps needed to install project and how to get the development environment running:*
      
-     ${userResponses.installation}`
-  
-  };
+     ${userResponses.installation}`;
+  }
 
   // Optional Usage section
-  if (userResponses.usage !== '') {
-
-    draftMarkdown += 
-
-    `
+  if (userResponses.usage !== "") {
+    draftMarkdown += `
     
     ## Usage
     
     *Instructions and examples for use:*
     
-    ${userResponses.usage}`
-  };
+    ${userResponses.usage}`;
+  }
 
   // Optional Constributing section
-  if (userResponses.contributing !== '') {
-     `
-     
-     ## Contributing
-     
-     *If you want to contribute, follow the instructions on how to do so.*
-     
-     ${userResponses.contributing}`
-  };
+  // if (userResponses.contributing !== "") {
+  //   draftMarkdown += `
+
+  //    ## Contributing
+
+  //    *If you want to contribute, follow the instructions on how to do so.*
+
+  //    ${userResponses.contributing}`;
+  // }
 
   // License section requirement
-  draftMarkdown += 
-  `
+  draftMarkdown += `
   
   ## License
   
   ${userResponses.license}`;
 
   // Questions/About the developer section
-  let draftDev =
-  `
+  let draftDev = `
   ----
   
   ## Questions?
@@ -98,23 +98,18 @@ function generateMarkdown(userResponse, userInfo) {
 
   // if GitHub email is not null, add Developer section
   if (userInfo.email !== null) {
-
-    draftDev += 
-    `
+    draftDev += `
     
     Email: ${userInfo.email}
     
-    `
-  };
+    `;
+  }
 
   // Add developer section to markdown
   draftMarkdown += draftDev;
 
   // Return markdown
   return draftMarkdown;
-
 }
-
-
 
 module.exports = generateMarkdown;
