@@ -38,7 +38,51 @@ function generateMarkdown(userResponse, userInfo) {
   draftMarkdown += ` * [License](#license)`;
 
   // Optional Installation section
-  if (userResponses.installation !== '') {}
-}
+  if (userResponses.installation !== '') {
+
+    draftMarkdown +=
+     `
+     ## Installation
+     
+     *Steps needed to install project and how to get the development environment running:*
+     
+     ${userResponses.installation}`
+  
+  };
+
+  // Optional Usage section
+  if (userResponses.usage !== '') {
+
+    draftMarkdown += 
+
+    `
+    
+    ## Usage
+    
+    *Instructions and examples for use:*
+    
+    ${userResponses.usage}`
+  };
+
+  // Optional Constributing section
+  if (userResponses.contributing !== '') {
+     `
+     
+     ## Contributing
+     
+     *If you want to contribute, follow the instructions on how to do so.*
+     
+     ${userResponses.contributing}`
+  };
+
+  // License section requirement
+  draftMarkdown += 
+  `
+  
+  ## License
+  
+  ${userResponses.license}`;
+
+  
 
 module.exports = generateMarkdown;
