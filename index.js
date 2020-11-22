@@ -1,8 +1,12 @@
+// External packages
 const inquirer = require("inquirer");
 const fs = require("fs");
-const generateMarkDown = require("./utils/generateMarkdown");
 const util = require("util");
 const { type } = require("os");
+
+// Internal modules
+const generateMarkDown = require("./utils/generateMarkdown.js");
+// const api = require("./utils/")
 
 const writeFileAsynch = util.promisify(fs.writeFile);
 
