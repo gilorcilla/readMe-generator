@@ -1,5 +1,5 @@
 // function to generate markdown for README
-function generateMarkdown(userResponse, userInfo) {
+function generateMarkdown(userResponses, userInfo) {
   // Generate Table of Contents, based on userResponses
   let draftToc = `## Table of Contents`;
 
