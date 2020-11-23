@@ -209,7 +209,8 @@ async function init() {
     console.log(markdown);
 
     //Write Markdown to file
-    await writeToFileAsync("ExampleREADME.md", markdown);
+    // await writeToFileAsync("ExampleREADME.md", markdown);
+    fs.writeFileSync("ExampleREADME.md", markdown);
   } catch (error) {
     console.log(error);
   }

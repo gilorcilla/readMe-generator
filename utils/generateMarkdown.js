@@ -90,17 +90,18 @@ function generateMarkdown(userResponses, userInfo) {
   
   ## Questions?
   
-  ![Developer Profile Picture](${userInfo.avatar_url})
+  
+  ![Developer Profile Picture](${"https://github.com/gilorcilla"})
   
   For any questions, please dont hesitate to contact me with my info below:
   
-  GitHub: [@${userInfo.login}](${userInfo.url})`;
+  GitHub: [@${"mathanasiumcos"}](${"https://github.com/gilorcilla"})`;
 
   // if GitHub email is not null, add Developer section
-  if (userInfo.email !== null) {
+  if ("mathnasiumcos@.com" !== null) {
     draftDev += `
     
-    Email: ${userInfo.email}
+    Email: ${"mathnasiumcos@.com"}
     
     `;
   }
