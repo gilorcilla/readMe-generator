@@ -163,7 +163,7 @@ const questions = [
   //   name: "tests",
   // },
   {
-    type: "input",
+    type: "list",
     message: "Choose a license for your project.",
     choices: [
       "MIT License",
@@ -173,6 +173,7 @@ const questions = [
       "Mozilla Public license 2.0",
       "The Unlicense",
     ],
+    name: "license",
   },
 ];
 
