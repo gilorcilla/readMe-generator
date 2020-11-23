@@ -13,15 +13,15 @@ function generateMarkdown(userResponses, userInfo) {
   * [Usage] (#usage)`;
   }
 
-  if (userResponses.contributing !== "") {
-    draftToc += `
-  * [Contributing] (#contributing)`;
-  }
+  // if (userResponses.contributing !== "") {
+  //   draftToc += `
+  // * [Contributing] (#contributing)`;
+  // }
 
   // If(userResponses.tests !== "");
-  //
+  // {
   //   draftToc += `
-  // * [Tests] (#tests)`;
+  //   * [Tests] (#tests)`;
   // }
 
   // Generate markdown for the upper portion of the README.md file
@@ -66,24 +66,37 @@ function generateMarkdown(userResponses, userInfo) {
     ${userResponses.usage}`;
   }
 
-  // Optional Constributing section
-  // if (userResponses.contributing !== "") {
-  //   draftMarkdown += `
+  // Methodology Section
+  if (userResponses.methodology !== "") {
+    draftMarkdown += `
+    
+    ## Methdodology
+    
+    *Contextual framework:*
+    
+    ${userResponses.methodology}`;
+  }
+  //Optional Constributing section
+  if (userResponses.contributing !== "") {
+    draftMarkdown += `
 
-  //    ## Contributing
+     ## Contributing
 
-  //    *If you want to contribute, follow the instructions on how to do so.*
+     *If you want to contribute, follow the instructions on how to do so.*
 
-  //    ${userResponses.contributing}`;
-  // }
+     ${userResponses.contributing}`;
+  }
 
   // License section requirement
-  draftMarkdown += `
+  if (userResponses.license !== "") {
+    draftMarkdown += `
   
   ## License
   
-  ${userResponses.license}`;
+  *Pick a license:*
 
+  ${userResponses.license}`;
+  }
   // Questions/About the developer section
   let draftDev = `
   ----
@@ -91,7 +104,8 @@ function generateMarkdown(userResponses, userInfo) {
   ## Questions?
   
   
-  ![Developer Profile Picture](${"https://github.com/gilorcilla"})
+  ![Developer Profile Picture](${"./My_Picture.pdf"})
+  
   
   For any questions, please dont hesitate to contact me with my info below:
   

@@ -121,7 +121,7 @@ const questions = [
     name: "title",
     default: "Project Title",
     validate: function (answer) {
-      if (answer.lengt < 1) {
+      if (answer.length < 1) {
         return console.log("A valid project title is required.");
       }
       return true;
@@ -142,13 +142,18 @@ const questions = [
   {
     type: "input",
     message:
-      "If needed, describe the steps required to install your project for the instatlation section.",
+      "If needed, describe the steps required to install your project for the installation section.",
     name: "installation",
   },
   {
     type: "input",
     message: "Provide possible use of your project in the usage section.",
     name: "usage",
+  },
+  {
+    type: "input",
+    message: "Provide possible contextual framework of your project.",
+    name: "methodology",
   },
   // {
   //   type: "input",
